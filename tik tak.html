@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+ <head> 
+  <title>
+
+        </title> 
+  <link rel="stylesheet" href="style.css"> 
+  <meta name="viewport" content="width=device-width, user-scalable=no" initial-scale="1.0"> 
+  <style>
+            *{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+ul,li{
+    margin: 0;
+    padding: 0;
+}
+.game-panel{
+    height: 350px;
+    width: 350px;
+    margin: auto;
+    transform: translateY(-50%);
+    top: 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+ul{
+    height: 100%;
+    width:100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background:#9ea6b3;
+}
+ul li{
+    display: inline-block;
+    width: 32.6%;
+    text-align: center;
+    background: #ffffff;
+    height: 33%;
+    margin-bottom: 4px;
+    color: #000;
+    padding: 23px;
+    font-size: 3.2em;
+}
+h1{
+    padding: 20px 0;
+    text-align: center;
+    font-weight: 300;
+    font-size: 3.5em;
+    color: #fff;
+    background: #0066aa;
+}
+#winner{
+    font-size: 24px;
+    padding: 40px 0 20px;
+    display: inline-block;
+    width: 79%;
+    text-align: left;
+}
+.info{
+        position: absolute;
+        margin: auto;
+        text-align: center;
+        bottom: 0;
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background: #000;
+        color: #fff;
+        font-size: 12px;
+}
+#clear{
+    padding: 10px 15px;
+    background: #0066aa;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+@keyframes go{
+    from{
+        background: #00dd00;
+    }
+    to{
+        background: #ffffff;
+    }
+}
+@media only screen and (max-width:767px){
+    .game-panel {
+        height: 250px;
+        width: 250px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    .check{
+        text-align: center;
+    }
+    #winner {
+        font-size: 21px;
+        padding: 40px 0 20px;
+        width: 100%;
+        text-align: center;
+    }
+    #clear {
+        padding: 8px 15px;
+        margin: auto;
+    }
+    ul li {
+        padding: 18px;
+        font-size: 2.8em;
+    }
+    .info{
+        position: absolute;
+        bottom: 0;
+    }
+}
+        </style> 
+ </head> 
+ <body> 
+  <div id="show"> 
+   <h1>Let's play Tik-tak-toe</h1> 
+   <div class="game-panel"> 
+    <ul class="each-paly-sec" id="playSec"> 
+     <li></li> 
+     <li></li> 
+     <li></li> 
+     <li></li> 
+     <li></li> 
+     <li></li> 
+     <li></li> 
+     <li></li> 
+     <li></li> 
+    </ul> 
+    <div class="check">
+     <p id="winner">Lets see who wins...</p>
+     <button id="clear">Restart</button>
+    </div> 
+   </div> 
+   <p class="info">Lockdown in home? Getting Bored? Lets play Tik-tac-toe :)</p> 
+  </div> 
+  <script>
+            window.onload = function(){
+    let i=0;
+    voo = document.querySelectorAll("li");
+    play = document.getElementById("playSec");
+    for(k=0;k<=voo.length; k++)
+    {
+        
+
+       voo[k].onclick =function(){
+
+        if(i%2==0)
+        {   
+            if(this.innerHTML=="")
+            {
+                this.innerHTML = "X";
+                i++;
+            }
+            
+        }
+        else{
+            if(this.innerHTML=="")
+            {
+                this.innerHTML = "O";
+                i++;
+            }
+        }
+        // console.log(i);
+            // checking for matching...
+           
+               
+               
+                if((voo[0].innerHTML == 'X' && voo[1].innerHTML == 'X' && voo[2].innerHTML == 'X') || (voo[0].innerHTML == 'X' && voo[3].innerHTML == 'X' && voo[6].innerHTML == 'X') || (voo[0].innerHTML == 'X' && voo[4].innerHTML == 'X' && voo[8].innerHTML == 'X') || (voo[1].innerHTML == 'X' && voo[4].innerHTML == 'X' && voo[7].innerHTML == 'X') || (voo[2].innerHTML == 'X' && voo[5].innerHTML == 'X' && voo[8].innerHTML == 'X') || (voo[3].innerHTML == 'X' && voo[4].innerHTML == 'X' && voo[5].innerHTML == 'X') || (voo[6].innerHTML == 'X' && voo[7].innerHTML == 'X' && voo[8].innerHTML == 'X') || (voo[2].innerHTML == 'X' && voo[4].innerHTML == 'X' && voo[6].innerHTML == 'X'))
+                {
+                    alert("'X' wins");
+                    alert("Next will be 'O's' turns");
+                    play.style="animation:go linear infinite 0.2s";
+                    document.getElementById("winner").innerHTML = "Palyer <strong>X</strong> wines the match";
+                }
+
+                else if((voo[0].innerHTML == 'O' && voo[1].innerHTML == 'O' && voo[2].innerHTML == 'O') || (voo[0].innerHTML == 'O' && voo[3].innerHTML == 'O' && voo[6].innerHTML == 'O') || (voo[0].innerHTML == 'O' && voo[4].innerHTML == 'O' && voo[8].innerHTML == 'O') || (voo[1].innerHTML == 'O' && voo[4].innerHTML == 'O' && voo[7].innerHTML == 'O') || (voo[2].innerHTML == 'O' && voo[5].innerHTML == 'O' && voo[8].innerHTML == 'O') || (voo[3].innerHTML == 'O' && voo[4].innerHTML == 'O' && voo[5].innerHTML == 'O') || (voo[6].innerHTML == 'O' && voo[7].innerHTML == 'O' && voo[8].innerHTML == 'O') || (voo[2].innerHTML == 'O' && voo[4].innerHTML == 'O' && voo[6].innerHTML == 'O'))
+                {
+                    alert("'O' wins");
+                    alert("Next will be 'X's' turns");
+                    play.style="animation:go linear infinite 0.2s";
+                    document.getElementById("winner").innerHTML = "Palyer <strong>O</strong> wines the match";
+                }
+           
+       
+        }
+        
+        document.getElementById("clear").onclick = function(){
+            for(r=0; r<voo.length; r++)
+             {
+                 voo[r].innerHTML = ""; 
+                 // voo[r].onclick = true; 
+             }   
+            play.style="animation:none";
+            
+         }
+    
+    }
+}
+        </script> tiktaktoe.html Displaying tiktaktoe.html.
+ </body>
+</html>
